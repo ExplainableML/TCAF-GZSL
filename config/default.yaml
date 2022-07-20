@@ -1,0 +1,106 @@
+
+log_dir: 'runs'
+
+dataset_name: UCF
+zero_shot_split: ''
+manual_text_word2vec: False
+val_all_loss: False
+
+debug: False
+verbose: False
+
+debug_comment: ''
+epochs: 100
+
+norm_inputs: False
+z_score_inputs: False
+
+optimizer: 'adam'
+lr: 3.e-4
+bs: 256
+n_batches: 250
+
+mixup_parameter: 0.5
+batch_seqlen_train: 'max'
+batch_seqlen_train_maxlen: 60
+batch_seqlen_train_trim: 'random'
+batch_seqlen_test: 'max'
+batch_seqlen_test_maxlen: 60
+batch_seqlen_test_trim: 'center'
+
+use_mixup: False
+
+depth_transformer: 1
+additional_dropout: 0
+embeddings_hidden_size: 1024
+decoder_hidden_size: 64
+embedding_dropout: 0.8
+decoder_dropout: 0.5
+embedding_use_bn: False
+decoder_use_bn: False
+normalize_decoder_outputs: False
+margin: 1.0
+distance_fn: 'L2Loss'
+lr_scheduler: False
+selavi: False
+seed: 42
+device: 'cuda'
+baseline: False
+audio_baseline: False
+video_baseline: False
+concatenated_baseline: False
+cjme: False
+new_model: False
+new_model_early_fusion: False
+new_model_middle_fusion: False
+new_model_attention: False
+new_model_attention_both_heads: False
+new_model_sequence: False
+perceiver: false
+attention_fusion: false
+ale: False
+devise: False
+sje: False
+apn: False
+
+exp_name: ''
+cross_entropy_loss: False
+additional_triplets_loss: False
+reg_loss: False
+cycle_loss: False
+first_additional_triplet: 1
+second_additional_triplet: 1
+third_additional_triplet: 1
+
+embeddings_batch_norm: True
+rec_loss: False
+ct_loss: False
+w_loss: False
+
+transformer_average_features: False
+transformer_use_class_token: True
+transformer_use_embedding_net: False
+transformer_dim: 300
+transformer_depth: 5
+transformer_heads: 4
+transformer_dim_head: 64
+transformer_mlp_dim: 128
+transformer_dropout: 0.5
+use_self_attention: True
+use_cross_attention: True
+audio_only: False
+video_only: False
+
+transformer_embedding_dim: 64
+transformer_embedding_time_len: 200
+transformer_embedding_dropout: 0.1
+transformer_embedding_modality: True
+transformer_embedding_time_embed_type: 'fixed'
+transformer_embedding_fourier_scale: 10.0
+transformer_embedding_embed_augment_position: False
+
+
+eval_name: 'Attention'
+eval_bs: 64
+eval_num_workers: 8
+eval_save_performances: False

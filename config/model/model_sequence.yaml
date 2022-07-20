@@ -1,0 +1,53 @@
+feature_extraction_method: supervised_split_nooverlap_no_averaged
+input_size_audio: 128
+input_size_video: 4096
+epochs: 25
+lr_scheduler: True
+zero_shot_split: sup_split_nooverlap
+
+new_model_sequence: True
+
+optimizer: 'adam' # 'adam-sam'
+lr: 0.0001
+bs: 64
+n_batches: 300
+
+batch_seqlen_train: 'max'
+batch_seqlen_train_maxlen: 60
+batch_seqlen_train_trim: 'random'
+batch_seqlen_test: 'max'
+batch_seqlen_test_maxlen: 60
+batch_seqlen_test_trim: 'center'
+
+embeddings_hidden_size: 512
+embedding_dropout: 0.2
+decoder_hidden_size: 512
+decoder_dropout: 0.2
+additional_dropout: 0.1
+
+additional_triplets_loss: True
+first_additional_triplet: 1
+second_additional_triplet: 1
+third_additional_triplet: 0
+reg_loss: True
+
+embeddings_batch_norm: True
+rec_loss: False
+ct_loss: False
+w_loss: False
+
+transformer_average_features: False
+transformer_use_embedding_net: False
+transformer_dim: 300
+transformer_depth: 5
+transformer_heads: 4
+transformer_dim_head: 64
+transformer_mlp_dim: 128
+transformer_dropout: 0.5
+
+transformer_embedding_dim: 64
+transformer_embedding_time_len: 200
+transformer_embedding_dropout: 0.1
+transformer_embedding_time_embed_type: 'fixed'
+transformer_embedding_fourier_scale: 10.0
+transformer_embedding_embed_augment_position: False
