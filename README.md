@@ -2,6 +2,7 @@
 
 This repository is the official implementation of [Temporal and cross-modal attention for
 audio-visual zero-shot learning](https://arxiv.org/abs/2207.09966).
+
 <img src="/img/TCAF.png" width="700" height="400">
 
 ## Requirements
