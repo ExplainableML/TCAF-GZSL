@@ -13,17 +13,22 @@ conda env create -f TCAF.yml
 
 # Datasets
 
-We base our datasets on [AVCA repository](https://github.com/ExplainableML/AVCA-GZSL/). The dataset structure is identical to AVC repository with the only mention that the data folder in this repo is called ```avgzsl_benchmark_non_averaged_datasets```. The only difference is that we use temporal features instead of averaged features.
+We base our datasets on the [AVCA repository](https://github.com/ExplainableML/AVCA-GZSL/). The dataset structure is identical to AVCA and the dataset folder is called ```avgzsl_benchmark_non_averaged_datasets```. The only difference is that we use temporal features instead of averaged features. We provide our temporal C3D/VGGish features to download below.
 
-In order to obtain the C3D/VGGish features, run the scripts in the ```/cls_feature_extraction``` as follows:
+In order to extract the C3D/VGGish features on your own, run the scripts in the ```/cls_feature_extraction``` as follows:
+```shell
+python3 cls_feature_extraction/get_features_activitynet.py
+python3 cls_feature_extraction/get_features_ucf.py
+python3 cls_feature_extraction/get_features_vggsound.py
 ```
-python cls_feature_extraction/get_features_activitynet.py
-python cls_feature_extraction/get_features_ucf.py
-python cls_feature_extraction/get_features_vggsound.py
+Given the files extracted by the above scripts, run the following command to obtain the cls features:
+
+```shell
+python3 splitting_scripts_cls/create_features.py
 ```
 
-Moreover, we adapted the selavi implementation from [AVCA repository](https://github.com/ExplainableML/AVCA-GZSL/). For obtaining the SeLaVi features we used the following command
-```
+Moreover, we adapted the SeLaVi implementation from the [AVCA repository](https://github.com/ExplainableML/AVCA-GZSL/) in order to extract temporal features and to make extraction more parallelizable. For obtaining the SeLaVi features we used the following commands:
+```shell
 python3 selavi_feature_extraction/get_clusters.py \
 --root_dir <path_to_raw_videos> \
 --weights_path <path_to_pretrained_selavi_vgg_sound.pth> \
@@ -37,22 +42,25 @@ python3 selavi_feature_extraction/get_clusters.py \
 --output_dir <path_to_save_extracted_features> \
 --batch_size 1 \
 --workers 0
-```
-This selavi script will save each video in a pickle file in order to make this highly parallelizable. In order to put all videos together, run the merge_features_selavi.py:
-```
+
 python3 selavi_feature_extraction/merge_features_selavi.py
+python3 splitting_scripts_main/create_features_selavi.py
+
 ```
 
-Finally, given the files extracted by the above scripts, run the following commands 
-
-```python3 splitting_scripts_main/create_features_selavi.py``` to obtain the selavi features
-
-```python3 splitting_scripts_cls/create_features.py``` to obtain the cls features
 
 
 ## Download features
 
-The features for UCF can be downloaded from [here](https://drive.google.com/file/d/1h7ysUITXVKka8qppZtU8_AzlC63jK5V_/view?usp=sharing). These features should be placed inside the ```avgzsl_benchmark_non_averaged_datasets``` folder, similar to [AVCA repository](https://github.com/ExplainableML/AVCA-GZSL/).
+You can download our temporal supervised features (C3D/VGGish) of all three datasets here:
+* [VGGSound-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/vggsound-supervised-temporal.zip)
+* [UCF-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/ucf-supervised-temporal.zip)
+* [ActivityNet-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/activitynet-supervised-temporal.zip)
+
+The features should be placed inside the ```avgzsl_benchmark_non_averaged_datasets``` folder:
+```shell
+unzip [DATASET].zip -d avgzsl_benchmark_non_averaged_datasets/
+```
 
 
 # Training
@@ -61,7 +69,6 @@ In order to train the model run the following command:
 
 ```
 arguments:
-
 --cfg CFG_FILE is the file containing all the hyperparameters for the experiments. These can be found in ```config/best/X/best_Y.yaml``` where X indicate whether you want to use cls features or main features. Y indicate the dataset that you want to use.
 --root_dir ROOT_DIR indicates the location where the dataset is stored.
 --dataset_name {VGGSound, UCF, ActivityNet} indicate the name of the dataset.
@@ -78,7 +85,8 @@ For manual evaluation run the following command:
 
 ```python3 get_evaluation.py --load_path_stage_A PATH_STAGE_A --load_path_stage_B PATH_STAGE_B --dataset_name DATASET_NAME --root_dir ROOT_DIR```
 
-```arguments:
+```
+arguments:
 --load_path_stage_A will indicate to the path that contains the network for stage 1
 --load_path_stage_B will indicate to the path that contains the network for stage 2
 --dataset_name {VGGSound, UCF, ActivityNet} will indicate the name of the dataset
@@ -89,7 +97,7 @@ For manual evaluation run the following command:
 # Model weights
 The trained models can be downloaded from [here](https://drive.google.com/file/d/1blz6p7qv94V238Qt0w0dBsqXZLGsT84D/view?usp=sharing).
 
-# Results 
+# Results
 
 ### GZSL performance on VGGSound-GZSL, UCF-GZSL, ActivityNet-GZSL
 
@@ -115,17 +123,11 @@ The trained models can be downloaded from [here](https://drive.google.com/file/d
 |**TCAF**            |  **7.41**              |  **44.64**      | **7.96**         |
 
 # Project structure
-
-```audioset_vggish_tensorflow_to_pytorch``` - Contains the code which is used to obtain the audio features using VGGish.
-
-```c3d``` - Folder contains the code for the C3D network.
-
-```selavi_feature_extraction``` - Contains the code used to extract the SeLaVi features.
-
-```src``` - Contains the code used throughout the project for dataloaders/models/training/testing.
-
-```cls_feature_extraction``` - Contains the code used to extract the C3D/VGGish features from all 3 datasets.
-
+```src``` - Contains the code used throughout the project for dataloaders/models/training/testing.  
+```c3d``` - Folder contains the code for the C3D network.  
+```audioset_vggish_tensorflow_to_pytorch``` - Contains the code which is used to obtain the audio features using VGGish.  
+```cls_feature_extraction``` - Contains the code used to extract the C3D/VGGish features from all 3 datasets.  
+```selavi_feature_extraction``` - Contains the code used to extract the SeLaVi features.  
 ```splitting_scripts_{cls,main}``` - Contains files from spltting our dataset into the required structure.
 
 # References
