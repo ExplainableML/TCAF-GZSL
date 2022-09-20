@@ -83,10 +83,11 @@ Evaluation can be done in two ways. Either you train with ```--run all``` which 
 
 For manual evaluation run the following command:
 
-```python3 get_evaluation.py --load_path_stage_A PATH_STAGE_A --load_path_stage_B PATH_STAGE_B --dataset_name DATASET_NAME --root_dir ROOT_DIR```
+```python3 get_evaluation.py --cfg CFG_FILE --load_path_stage_A PATH_STAGE_A --load_path_stage_B PATH_STAGE_B --dataset_name DATASET_NAME --root_dir ROOT_DIR```
 
 ```
 arguments:
+--cfg CFG_FILE is the file containing all the hyperparameters for the experiments. These can be found in ```config/best/X/best_Y.yaml``` where X indicate whether you want to use cls features or main features. Y indicate the dataset that you want to use.
 --load_path_stage_A will indicate to the path that contains the network for stage 1
 --load_path_stage_B will indicate to the path that contains the network for stage 2
 --dataset_name {VGGSound, UCF, ActivityNet} will indicate the name of the dataset
