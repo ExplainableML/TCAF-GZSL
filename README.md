@@ -24,7 +24,12 @@ python3 cls_feature_extraction/get_features_vggsound.py
 Given the files extracted by the above scripts, run the following command to obtain the cls features:
 
 ```shell
-python3 splitting_scripts_cls/create_features.py
+python3 splitting_scripts_cls/create_pkl_files_cls.py --dataset_name DATASET_NAME --path_original_dataset PATH_ORIGINAL_DATASET --path_splitted_dataset PATH_SPLITTED_DATASET
+
+arguments:
+--dataset_name: Name of the dataset
+--path_original_dataset: the path of the dataset where the above scripts (those in ```cls_feature_extraction```) have extracted the dataset
+--path_splitted_dataset: the path where to put the dataset after it is processed in the right way. 
 ```
 
 Moreover, we adapted the SeLaVi implementation from the [AVCA repository](https://github.com/ExplainableML/AVCA-GZSL/) in order to extract temporal features and to make extraction more parallelizable. For obtaining the SeLaVi features we used the following commands:
@@ -44,8 +49,15 @@ python3 selavi_feature_extraction/get_clusters.py \
 --workers 0
 
 python3 selavi_feature_extraction/merge_features_selavi.py
-python3 splitting_scripts_main/create_features_selavi.py
+```
 
+```
+python3 splitting_scripts_main/create_pkl_files_selavi.py --dataset_name DATASET_NAME --path_original_dataset PATH_ORIGINAL_DATASET --path_splitted_dataset PATH_SPLITTED_DATASET
+
+arguments:
+--dataset_name: Name of the dataset
+--path_original_dataset: the path of the dataset where the above scripts (those in ```selavi_feature_extraction```) have extracted the dataset
+--path_splitted_dataset: the path where to put the dataset after it is processed in the right way. 
 ```
 
 
