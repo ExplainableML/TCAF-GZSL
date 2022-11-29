@@ -1,4 +1,6 @@
 # Temporal and cross-modal attention for audio-visual zero-shot learning
+## [Paper](https://arxiv.org/abs/2207.09966) | [Project Page](https://www.eml-unitue.de/publication/temporal-audio-visual-zsl)
+
 
 This repository is the official implementation of [Temporal and cross-modal attention for
 audio-visual zero-shot learning](https://arxiv.org/abs/2207.09966).
