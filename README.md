@@ -67,14 +67,14 @@ arguments:
 ## Download features
 
 You can download our temporal supervised (C3D/VGGish) features of all three datasets here:
-* [VGGSound-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/vggsound-supervised-temporal.zip) 
-* [UCF-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/ucf-supervised-temporal.zip)
-* [ActivityNet-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/activitynet-supervised-temporal.zip)
+* [VGGSound-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/eccvdatasets/tcaf-gzsl/vggsound-supervised-temporal.zip) 
+* [UCF-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/eccvdatasets/tcaf-gzsl/ucf-supervised-temporal.zip)
+* [ActivityNet-GZSL (C3D/VGGish)](https://s3.mlcloud.uni-tuebingen.de/eccvdatasets/tcaf-gzsl/activitynet-supervised-temporal.zip)
 
 We additionally provide temporal self-supervised (SeLaVi) features, which have been pretrained in self-supervised manner on VGGSound:
-* [VGGSound-GZSL (SeLaVi)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/vggsound-selavi-temporal.zip) 
-* [UCF-GZSL (SeLaVi)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/ucf-selavi-temporal.zip)
-* [ActivityNet-GZSL (SeLaVi)](https://s3.mlcloud.uni-tuebingen.de/tcaf-gzsl/activitynet-selavi-temporal.zip)
+* [VGGSound-GZSL (SeLaVi)](https://s3.mlcloud.uni-tuebingen.de/eccvdatasets/tcaf-gzsl/vggsound-selavi-temporal.zip) 
+* [~~UCF-GZSL (SeLaVi)~~ \[**Currently unavailable**\]](https://s3.mlcloud.uni-tuebingen.de/eccvdatasets/tcaf-gzsl/ucf-selavi-temporal.zip)
+* [ActivityNet-GZSL (SeLaVi)](https://s3.mlcloud.uni-tuebingen.de/eccvdatasets/tcaf-gzsl/activitynet-selavi-temporal.zip)
 
 > Since the VGGSound dataset is also used for the zero-shot learning task, **we recommend the usage of supervised (C3D/VGGish) features** instead of SeLaVi.
 
